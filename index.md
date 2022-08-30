@@ -12,9 +12,12 @@ PhD Student in Bioinformatics and Computational Biology
 - I joined Dr. Wenyi Wang's Lab in April, 2020.
 
 ### My thesis project is about
-- developing computational deconvolution methods to estimate cellular compostions in bulk transcriptomics data.
+- developing computational deconvolution methods to estimate cell-type compositions from bulk transcriptomics data.
 - defining prostate cancer patient subtypes through genomic and transcriptomic deconvolution.
-- biological annotations of the clonal and subclonal variants.
+- biological annotation of clonal and subclonal variants in pan-cancer datasets.
 
 ### Publications
 You can find my publications at [Google scholar homepage](https://scholar.google.com/citations?user=xxGTF8cAAAAJ&hl=en).
+
+### Address
+The M.D. Anderson T. Boone Pickens Academic Tower. 1400 Pressler St, Houston, TX 77030
