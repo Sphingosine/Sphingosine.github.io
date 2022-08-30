@@ -1,6 +1,9 @@
 # Shuai Guo
+
 <img width="200" alt="profile" src="img/profiles.jpg">
+
 PhD Student in Bioinformatics and Computational Biology
+
 [Wenyi Wang Lab](https://odin.mdacc.tmc.edu/~wwang7/) @ University of Texas, MD Anderson Cancer Center
 
 ### Hi 👋 this is Shuai
