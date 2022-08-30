@@ -14,7 +14,7 @@ PhD Student in Bioinformatics and Computational Biology
 ### My thesis project is about
 - developing computational deconvolution methods to estimate cellular compostions in bulk transcriptomics data.
 - defining prostate cancer patient subtypes through genomic and transcriptomic deconvolution.
-- biological annotations of the clonal and subclonal variants
+- biological annotations of the clonal and subclonal variants.
 
 ### Publications
-You can find my publications at [Google scholar homepage](https://scholar.google.com/citations?user=xxGTF8cAAAAJ&hl=en)
+You can find my publications at [Google scholar homepage](https://scholar.google.com/citations?user=xxGTF8cAAAAJ&hl=en).
