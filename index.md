@@ -17,7 +17,7 @@ PhD Student in Bioinformatics and Computational Biology
 - biological annotation of clonal and subclonal variants in pan-cancer datasets.
 
 ### Publications
-You can find my publications at [Google scholar homepage](https://scholar.google.com/citations?user=xxGTF8cAAAAJ&hl=en).
+You can find my publications at [Google scholar homepage](https://scholar.google.com/citations?hl=en&user=uuEPxaQAAAAJ).
 
 ### Address
 The M.D. Anderson T. Boone Pickens Academic Tower. 1400 Pressler St, Houston, TX 77030
