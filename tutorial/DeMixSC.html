@@ -374,13 +374,24 @@ install the following R packages with the required version:</p>
 <li>sva ≥ 3.38.0</li>
 </ul>
 <pre class="r"><code># Check and install required packages
-# Install devtools if not already installed
+
+# Install BiocManager if necessary
+  if (!require(&quot;BiocManager&quot;, quietly = TRUE))
+    install.packages(&quot;BiocManager&quot;)    
+      
+# Install required pacakges
+  BiocManager::install(&quot;sva&quot;)
+  BiocManager::install(&quot;preprocessCore&quot;)
+  install.packages(&quot;doParallel&quot;)
+  install.packages(&quot;nnls&quot;)
+  install.packages(&#39;Seurat&#39;)</code></pre>
+<p>Install the latest version of DeMixSC from our GitHub repository:</p>
+<pre class="r"><code># install devtools if necessary
   if (!&quot;devtools&quot; %in% rownames(installed.packages())) {
     install.packages(&#39;devtools&#39;)
   }
-# You can use the code above to check and install the remaining packages listed above</code></pre>
-<p>Install the latest version of DeMixSC from our GitHub repository:</p>
-<pre class="r"><code># Install our DeMixSC package with the following command
+
+# Install our DeMixSC package with the following command
   devtools::install_github(&#39;wwylab/DeMixSC&#39;)</code></pre>
 </div>
 <div id="load-required-packages-and-the-tutorial-data" class="section level2">
