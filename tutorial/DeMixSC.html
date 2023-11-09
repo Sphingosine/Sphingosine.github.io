@@ -373,52 +373,74 @@ install the following R packages with the required version:</p>
 <li>doParallel ≥ 1.0.17</li>
 <li>sva ≥ 3.38.0</li>
 </ul>
-<pre class="r"><code># Check and install required packages
+<pre class="r"><code># Check and install required packages.
+# You may receive additional messages if it is the first time for you to install the packages.
 
-# Install BiocManager if necessary
+# Install BiocManager if necessary.
   if (!require(&quot;BiocManager&quot;, quietly = TRUE))
     install.packages(&quot;BiocManager&quot;)    
       
-# Install required pacakges
+# Install required packages.
   BiocManager::install(&quot;sva&quot;)
   BiocManager::install(&quot;preprocessCore&quot;)
   install.packages(&quot;doParallel&quot;)
   install.packages(&quot;nnls&quot;)
   install.packages(&#39;Seurat&#39;)</code></pre>
 <p>Install the latest version of DeMixSC from our GitHub repository:</p>
-<pre class="r"><code># install devtools if necessary
+<pre class="r"><code># install devtools if necessary.
   if (!&quot;devtools&quot; %in% rownames(installed.packages())) {
     install.packages(&#39;devtools&#39;)
   }
 
-# Install our DeMixSC package with the following command
+# Install our DeMixSC package using the following command.
   devtools::install_github(&#39;wwylab/DeMixSC&#39;)</code></pre>
 </div>
 <div id="load-required-packages-and-the-tutorial-data" class="section level2">
 <h2>Load required packages and the tutorial data</h2>
-<pre class="r"><code># Load required packages
-  library(DeMixSC)
-  library(Seurat)
-  library(nnls)
+<pre class="r"><code># Load required packages.
+  library(DeMixSC)</code></pre>
+<pre><code>## Loading required package: nnls</code></pre>
+<pre><code>## Loading required package: preprocessCore</code></pre>
+<pre><code>## Loading required package: doParallel</code></pre>
+<pre><code>## Loading required package: foreach</code></pre>
+<pre><code>## Loading required package: iterators</code></pre>
+<pre><code>## Loading required package: parallel</code></pre>
+<pre><code>## Loading required package: sva</code></pre>
+<pre><code>## Loading required package: mgcv</code></pre>
+<pre><code>## Loading required package: nlme</code></pre>
+<pre><code>## This is mgcv 1.8-42. For overview type &#39;help(&quot;mgcv-package&quot;)&#39;.</code></pre>
+<pre><code>## Loading required package: genefilter</code></pre>
+<pre><code>## Loading required package: BiocParallel</code></pre>
+<pre class="r"><code>  library(Seurat)</code></pre>
+<pre><code>## The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
+## which was just loaded, will retire in October 2023.
+## Please refer to R-spatial evolution reports for details, especially
+## https://r-spatial.org/r/2023/05/15/evolution4.html.
+## It may be desirable to make the sf package available;
+## package maintainers should consider adding sf to Suggests:.
+## The sp package is now running under evolution status 2
+##      (status 2 uses the sf package in place of rgdal)</code></pre>
+<pre><code>## Attaching SeuratObject</code></pre>
+<pre class="r"><code>  library(nnls)
   library(preprocessCore)
   library(doParallel)
   library(sva)
 
-# Before loading the tutorial data, change your working directory to the folder you saved the data.
-# Here, I used the benchmark data in batch-1 as an example. You can change the number to run the tutorial on batch-2 easily.
+# Before loading the tutorial data, change your working directory to the folder where you saved the data.
+# Here, I used the benchmark data in batch-1 as an example. You can change the names accordingly to run DeMixSC on batch-2.
   load(&quot;./benchmark_data1.RData&quot;)
   reference = readRDS(&quot;./reference_data1.rds&quot;)</code></pre>
 <ul>
 <li>Components of the tutorial benchmark dataset:
 <ul>
-<li><code>reference</code>: A sc/snRNA-seq Seurat object, utilized for
-creating the reference matrix. Cell-type information is denoted by the
+<li><code>reference</code>: A sc/snRNA-seq Seurat object for creating
+the reference matrix. Cell-type information is denoted by the
 “Annotation” column within this Seurat object.</li>
 <li><code>bulk</code>: Matrix representing the bulk data within the
 benchmark dataset.</li>
-<li><code>pseudobulk</code>: Matrix representing the pseudobulk data
+<li><code>pseudobulk</code>: Matrix representing the pseudo-bulk data
 within the benchmark dataset.</li>
-<li><code>truth.prop</code>: The true cell type proportions.</li>
+<li><code>truth.prop</code>: The true cell-type proportions.</li>
 </ul></li>
 <li>DeMixSC requires a benchmark dataset with the following
 characteristics:
@@ -438,8 +460,8 @@ optimally.</li>
 </div>
 <div id="deconvolution-with-demixsc" class="section level2">
 <h2>Deconvolution with DeMixSC</h2>
-<div id="step-1-adjust-the-technological-discrepancy-using-benchmark-dataset" class="section level4">
-<h4>Step-1: Adjust the technological discrepancy using benchmark
+<div id="step-1-adjust-the-technological-discrepancy-using-the-benchmark-dataset" class="section level4">
+<h4>Step-1: Adjust the technological discrepancy using the benchmark
 dataset</h4>
 <pre class="r"><code>  Input = DeMixSC.prep.benchmark(Seurat.obj = reference,  
                                  annotation = &quot;Annotation&quot;,
@@ -455,9 +477,9 @@ with genes on the rows and samples on the columns.</li>
 <li><code>mat.b</code>: Unadjusted relative expression matrix ‘b’, with
 genes on the rows and samples on the columns.</li>
 <li><code>reference.adj</code>: Adjusted reference matrix used for
-deconvolving mat.a.adj</li>
+deconvolving mat.a.adj.</li>
 <li><code>reference</code>: Unadjusted reference matrix used for
-deconvolving mat.b</li>
+deconvolving mat.b.</li>
 <li><code>theta.adj</code>: Adjusted relative abundance matrix of
 reference expression.</li>
 <li><code>cell.size</code>: Represents the mean cell size for each cell
@@ -469,22 +491,32 @@ technological discrepancies.</li>
 </ul></li>
 </ul>
 </div>
-<div id="step-2-deconvolve-the-bulk-rna-seq-data-after-adjusting-for-technological-discrepancy" class="section level4">
-<h4>Step-2: Deconvolve the bulk RNA-seq data after adjusting for
+<div id="step-2-deconvolve-the-bulk-rna-seq-data-after-adjusting-for-the-technological-discrepancy" class="section level4">
+<h4>Step-2: Deconvolve the bulk RNA-seq data after adjusting for the
 technological discrepancy</h4>
 <pre class="r"><code>  res_bulk = DeMixSC.deconvolution(bulk.mat = Input$mat.a.adj, 
                                    ref = Input$reference.adj, print.sample = NULL)</code></pre>
+<pre><code>## Note: DeMixSC defaults to using (max.cores-1). Be cautious to avoid system overload. Consider adjusting `nthread` if needed.</code></pre>
+<pre><code>## Starting parallel computation...</code></pre>
+<pre><code>## Parallel computation completed.</code></pre>
+<pre><code>## Deconvolution tasks completed!</code></pre>
+<pre class="r"><code># DeMixSC uses parallel computing, so you will see the above messages if everything works correctly.</code></pre>
 </div>
-<div id="step-3-deconvolve-the-pseudobulk-rna-seq-data-using-raw-the-input-matrix" class="section level4">
-<h4>Step-3: Deconvolve the pseudobulk RNA-seq data using raw the input
+<div id="step-3-deconvolve-the-pseudobulk-rna-seq-data-using-the-input-matrix" class="section level4">
+<h4>Step-3: Deconvolve the pseudobulk RNA-seq data using the input
 matrix</h4>
 <pre class="r"><code>  res_pseudobulk = DeMixSC.deconvolution(bulk.mat = Input$mat.b, 
                                          ref = Input$reference, print.sample = NULL)</code></pre>
+<pre><code>## Note: DeMixSC defaults to using (max.cores-1). Be cautious to avoid system overload. Consider adjusting `nthread` if needed.</code></pre>
+<pre><code>## Starting parallel computation...</code></pre>
+<pre><code>## Parallel computation completed.</code></pre>
+<pre><code>## Deconvolution tasks completed!</code></pre>
 <ul>
 <li>DeMixSC Deconvolution Outputs:
 <ul>
-<li><code>proportion</code>: A matrix of cell-type proportions, with
-cell types on the rows and samples on the columns.</li>
+<li><code>cell.type.proportions</code>: A matrix of cell-type
+proportions, with cell types on the rows and samples on the
+columns.</li>
 <li><code>converge</code>: A vector indicating the number of iterations
 until convergence for each sample.</li>
 <li><code>weights</code>: A matrix of gene weights with genes on the
@@ -492,16 +524,54 @@ rows and samples on the columns.</li>
 </ul></li>
 </ul>
 </div>
-<div id="step-4-extract-the-inferred-cell-type-proportions" class="section level4">
-<h4>Step-4: Extract the inferred cell-type proportions</h4>
-<pre class="r"><code>  prop.est_bulk = res_bulk$cell.type.proportions
-  prop.est_pseudobulk = res_pseudobulk$cell.type.proportions
-  
-  # Estimated proportion for bulk data
-  prop.est_bulk
-  
-  # Estimated proportion for pseudo-bulk data  
-  prop.est_pseudobulk  </code></pre>
+<div id="step-4-extract-the-estimated-cell-type-proportions" class="section level4">
+<h4>Step-4: Extract the estimated cell-type proportions</h4>
+<pre class="r"><code># Save the estimated cell-type proportions of the bulk data.
+  prop.est_bulk = res_bulk$cell.type.proportions
+# Save the estimated cell-type proportions of the pseudo-bulk data.
+  prop.est_pseudobulk = res_pseudobulk$cell.type.proportions</code></pre>
+<pre class="r"><code># Here are the estimated cell-type proportions of the bulk data.
+  round(prop.est_bulk, 2)</code></pre>
+<pre><code>##      Macular_19_D013 Macular_19_D014 Macular_19_D015 Macular_19_D016
+## MG              0.04            0.05            0.07            0.04
+## Rod             0.66            0.50            0.38            0.47
+## AC              0.06            0.07            0.08            0.09
+## BC              0.17            0.27            0.32            0.22
+## Cone            0.00            0.01            0.02            0.00
+## HC              0.06            0.09            0.12            0.08
+## RGC             0.00            0.01            0.02            0.10</code></pre>
+<pre class="r"><code># Here are the estimated cell-type proportions of the pseudo-bulk data.
+  round(prop.est_pseudobulk, 2) </code></pre>
+<pre><code>##      Macular_19_D013 Macular_19_D014 Macular_19_D015 Macular_19_D016
+## MG              0.03            0.07            0.03            0.06
+## Rod             0.64            0.54            0.43            0.37
+## AC              0.05            0.05            0.08            0.08
+## BC              0.27            0.34            0.43            0.41
+## Cone            0.00            0.00            0.01            0.01
+## HC              0.00            0.00            0.01            0.00
+## RGC             0.00            0.00            0.01            0.07</code></pre>
+<pre class="r"><code># Here, we compare the estimated proportions with their ground truth.
+# We use the root mean squared error (RMSE) to evaluate DeMixSC&#39;s performance in deconvolving benchmark data in batch-1.
+  library(Metrics)
+# load the ground truth.
+  load(&quot;./ground_truth.RData&quot;) 
+  cell.order = c(&quot;AC&quot;,&quot;BC&quot;,&quot;Cone&quot;,&quot;HC&quot;,&quot;MG&quot;,&quot;RGC&quot;,&quot;Rod&quot;)</code></pre>
+<pre class="r"><code># The RMSE values in the bulk data (one for each sample).
+  for (i in colnames(prop.est_bulk)) {
+    print(rmse(Truth_proportion[cell.order,i], prop.est_bulk[cell.order,i]))
+  }</code></pre>
+<pre><code>## [1] 0.0169058
+## [1] 0.05131309
+## [1] 0.044452
+## [1] 0.04472796</code></pre>
+<pre class="r"><code># The RMSE values in the pseudo-bulk data (one for each sample).
+  for (i in colnames(prop.est_pseudobulk)) {
+    print(rmse(Truth_proportion[cell.order,i], prop.est_pseudobulk[cell.order,i]))
+  }</code></pre>
+<pre><code>## [1] 0.03557157
+## [1] 0.05490345
+## [1] 0.05613007
+## [1] 0.05937674</code></pre>
 </div>
 </div>
 <div id="license" class="section level2">
@@ -516,10 +586,10 @@ when processing this tutorial.</p>
 <div id="reference" class="section level2">
 <h2>Reference</h2>
 <p><em>Guo, S., Liu, X., Cheng, X., Jiang, Y., Ji, S., Liang, Q., …
-&amp; Wang, W. (2023). The DeMixSC deconvolution framework uses
+&amp; Wang, W. (2023). DeMixSC: a deconvolution framework that uses
 single-cell sequencing plus a small benchmark dataset for improved
 analysis of cell-type ratios in complex tissue samples. bioRxiv,
-2023-10.</em><br /> <a href="https://doi.org/10.1101/2023.10.10.561733">https://doi.org/10.1101/2023.10.10.561733</a></p>
+2023-11.</em><br /> <a href="https://doi.org/10.1101/2023.10.10.561733">https://doi.org/10.1101/2023.10.10.561733</a></p>
 </div>
 
 
