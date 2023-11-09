@@ -404,9 +404,10 @@ install the following R packages with the required version:</p>
   library(doParallel)
   library(sva)
 
-# Load the tutorial data
-  load(&quot;./data/benchmark_data.RData&quot;)
-  reference = readRDS(&quot;./data/reference_data.rds&quot;)</code></pre>
+# Before loading the tutorial data, change your working directory to the folder you saved the data.
+# Here, I used the benchmark data in batch-1 as an example. You can change the number to run the tutorial on batch-2 easily.
+  load(&quot;./benchmark_data.RData&quot;)
+  reference = readRDS(&quot;./reference_data.rds&quot;)</code></pre>
 <ul>
 <li>Components of the tutorial benchmark dataset:
 <ul>
@@ -442,8 +443,8 @@ optimally.</li>
 dataset</h4>
 <pre class="r"><code>  Input = DeMixSC.prep.benchmark(Seurat.obj = reference,  
                                  annotation = &quot;Annotation&quot;,
-                                 mat.a = bulk,  
-                                 mat.b = pseudobulk,
+                                 mat.a = bulk_data1,  
+                                 mat.b = pseudobulk_data2,
                                  cutoff = 0.05, 
                                  scale.factor = 1e6)</code></pre>
 <ul>
