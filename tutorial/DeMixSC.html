@@ -493,8 +493,14 @@ rows and samples on the columns.</li>
 </div>
 <div id="step-4-extract-the-inferred-cell-type-proportions" class="section level4">
 <h4>Step-4: Extract the inferred cell-type proportions</h4>
-<pre class="r"><code>  prop.est_bulk = res_bulk$proportion
-  prop.est_pseudobulk = res_pseudobulk$proportion</code></pre>
+<pre class="r"><code>  prop.est_bulk = res_bulk$cell.type.proportions
+  prop.est_pseudobulk = res_pseudobulk$cell.type.proportions
+  
+  # Estimated proportion for bulk data
+  prop.est_bulk
+  
+  # Estimated proportion for pseudo-bulk data  
+  prop.est_pseudobulk  </code></pre>
 </div>
 </div>
 <div id="license" class="section level2">
