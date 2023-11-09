@@ -405,7 +405,8 @@ install the following R packages with the required version:</p>
   library(sva)
 
 # Load the tutorial data
-  load(&quot;./data/tutorial_benchmark_data.RData&quot;)</code></pre>
+  load(&quot;./data/benchmark_data.RData&quot;)
+  reference = readRDS(&quot;./data/reference_data.rds&quot;)</code></pre>
 <ul>
 <li>Components of the tutorial benchmark dataset:
 <ul>
@@ -471,13 +472,13 @@ technological discrepancies.</li>
 <h4>Step-2: Deconvolve the bulk RNA-seq data after adjusting for
 technological discrepancy</h4>
 <pre class="r"><code>  res_bulk = DeMixSC.deconvolution(bulk.mat = Input$mat.a.adj, 
-                                   ref = Input$reference.adj)</code></pre>
+                                   ref = Input$reference.adj, print.sample = NULL)</code></pre>
 </div>
 <div id="step-3-deconvolve-the-pseudobulk-rna-seq-data-using-raw-the-input-matrix" class="section level4">
 <h4>Step-3: Deconvolve the pseudobulk RNA-seq data using raw the input
 matrix</h4>
 <pre class="r"><code>  res_pseudobulk = DeMixSC.deconvolution(bulk.mat = Input$mat.b, 
-                                         ref = Input$reference)</code></pre>
+                                         ref = Input$reference, print.sample = NULL)</code></pre>
 <ul>
 <li>DeMixSC Deconvolution Outputs:
 <ul>
