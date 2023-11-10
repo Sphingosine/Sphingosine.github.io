@@ -372,6 +372,7 @@ install the following R packages with the required version:</p>
 <li>preprocessCore ≥ 1.52.1</li>
 <li>doParallel ≥ 1.0.17</li>
 <li>sva ≥ 3.38.0</li>
+<li>Metrics ≥ 0.1.4</li>
 </ul>
 <pre class="r"><code># Check and install required packages.
 # You may receive additional messages if it is the first time for you to install the packages.
@@ -385,7 +386,8 @@ install the following R packages with the required version:</p>
   BiocManager::install(&quot;preprocessCore&quot;)
   install.packages(&quot;doParallel&quot;)
   install.packages(&quot;nnls&quot;)
-  install.packages(&#39;Seurat&#39;)</code></pre>
+  install.packages(&#39;Seurat&#39;)
+  install.packages(&#39;Metrics&#39;)</code></pre>
 <p>Install the latest version of DeMixSC from our GitHub repository:</p>
 <pre class="r"><code># install devtools if necessary.
   if (!&quot;devtools&quot; %in% rownames(installed.packages())) {
