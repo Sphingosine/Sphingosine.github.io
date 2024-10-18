@@ -7,7 +7,7 @@ PhD Student in Bioinformatics and Computational Biology
 [Wenyi Wang Lab](https://odin.mdacc.tmc.edu/~wwang7/) @ University of Texas, MD Anderson Cancer Center
 
 ### Hi 👋 this is Shuai
-- I'm currently a 4th year PhD student at University of Texas GSBS program, Houston, Texas.
+- I'm currently a 6th year PhD student at University of Texas GSBS program, Houston, Texas.
 - Before my PhD study, I finished my undergrad and mast degree in Cellular Biology at Central South University, Xiangya Medical School in China.
 - I joined Dr. Wenyi Wang's Lab in April, 2020.
 
